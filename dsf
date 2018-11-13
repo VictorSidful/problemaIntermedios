@@ -1,0 +1,414 @@
+[1mdiff --git a/BusquedaBinaria/Aerodrom/in.txt b/BusquedaBinaria/Aerodrom/in.txt[m
+[1mdeleted file mode 100644[m
+[1mindex 3212ca4..0000000[m
+[1m--- a/BusquedaBinaria/Aerodrom/in.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,8 +0,0 @@[m
+[31m-7 10[m
+[31m-3[m
+[31m-8[m
+[31m-3[m
+[31m-6[m
+[31m-9[m
+[31m-2[m
+[31m-4[m
+\ No newline at end of file[m
+[1mdiff --git a/BusquedaBinaria/Aerodrom/sol.cpp b/BusquedaBinaria/Aerodrom/sol.cpp[m
+[1mdeleted file mode 100644[m
+[1mindex b61f107..0000000[m
+[1m--- a/BusquedaBinaria/Aerodrom/sol.cpp[m
+[1m+++ /dev/null[m
+[36m@@ -1,36 +0,0 @@[m
+[31m-#include <bits/stdc++.h>[m
+[31m-using namespace std;[m
+[31m-typedef long long i64;[m
+[31m-[m
+[31m-vector<i64> tiempos(300005);[m
+[31m-[m
+[31m-i64 operacion(i64 n,i64 desk){[m
+[31m- i64 res=0;[m
+[31m-   for(i64 i=0; i<desk;i++){[m
+[31m-     res+=n/tiempos[i];[m
+[31m-   }[m
+[31m-   return res;[m
+[31m-}[m
+[31m-[m
+[31m-int main(){[m
+[31m- [m
+[31m-  i64 desk,people;[m
+[31m-  cin>>desk>>people;[m
+[31m-  i64 max=0;	[m
+[31m-  for(int i=0;i<desk;i++){[m
+[31m-    int tiempo;cin>>tiempo;[m
+[31m-    tiempos[i]=tiempo;[m
+[31m-    if(tiempo>max) max= tiempo;[m
+[31m-  }[m
+[31m-[m
+[31m-  i64 ini=0,fin=max*people,mid; 	[m
+[31m-  while(ini < fin){[m
+[31m-     mid= 0.5*(ini+fin);[m
+[31m-     if(operacion(mid,desk) < people)[m
+[31m-       ini=mid+1;[m
+[31m-     else[m
+[31m-  	fin=mid;[m
+[31m-  }[m
+[31m-  cout<<ini;[m
+[31m- return 0;[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/BusquedaBinaria/Aerodrom/sol.exe b/BusquedaBinaria/Aerodrom/sol.exe[m
+[1mdeleted file mode 100644[m
+[1mindex 9ca55fe..0000000[m
+Binary files a/BusquedaBinaria/Aerodrom/sol.exe and /dev/null differ
+[1mdiff --git a/BusquedaBinaria/Planetas/in.txt b/BusquedaBinaria/Planetas/in.txt[m
+[1mdeleted file mode 100644[m
+[1mindex e8d1c38..0000000[m
+[1m--- a/BusquedaBinaria/Planetas/in.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,2 +0,0 @@[m
+[31m-4[m
+[31m-0 1 2 3[m
+\ No newline at end of file[m
+[1mdiff --git a/BusquedaBinaria/Planetas/sol.cpp b/BusquedaBinaria/Planetas/sol.cpp[m
+[1mdeleted file mode 100644[m
+[1mindex 78f7bc6..0000000[m
+[1m--- a/BusquedaBinaria/Planetas/sol.cpp[m
+[1m+++ /dev/null[m
+[36m@@ -1,60 +0,0 @@[m
+[31m-#include <bits/stdc++.h>[m
+[31m-#define dig 1000[m
+[31m-using namespace std;[m
+[31m-[m
+[31m-vector <float> planetas;[m
+[31m-vector<float> valores;[m
+[31m-int N;[m
+[31m-[m
+[31m-float ecuacion(float a){[m
+[31m-    float res=0;[m
+[31m-	for(int i=0;i<N;i++) res+=(1/(planetas[i]-a));         [m
+[31m- return res; [m
+[31m-}[m
+[31m-[m
+[31m-float binary(float digito){[m
+[31m- int res=-1,mid,ini=0,fin=valores.size()-1;float menor=dig+1;[m
+[31m-   [m
+[31m-    while(ini<=fin){ 	[m
+[31m-     mid= 0.5*(ini+fin);[m
+[31m-[m
+[31m-     float total; total = ecuacion(digito+valores[mid]);[m
+[31m-	 if(total == 0){[m
+[31m-	  res =mid;  fin =mid-1; menor = 0;[m
+[31m-	 }[m
+[31m-	 if(total > 0){[m
+[31m-		if(total<0) total = total*-1;	[m
+[31m-	 	if(total < menor){ res= mid; menor = total;} [m
+[31m-	 fin = mid-1;[m
+[31m-	 }[m
+[31m-	if(total < 0){ if(total<0) total = total*-1;[m
+[31m-	 	if(total < menor){res= mid; menor = total;}[m
+[31m-	 ini = mid+1;[m
+[31m-	}[m
+[31m-    }[m
+[31m-   return (digito+valores[res]);[m
+[31m-}[m
+[31m-[m
+[31m-int main(){[m
+[31m-  	cin>>N;[m
+[31m-        planetas = vector<float> (N);[m
+[31m-	for(int i=0;i<N;i++) cin>>planetas[i];[m
+[31m-[m
+[31m-	valores = vector<float> (dig);[m
+[31m-	for(float i=0;i<dig;i++) valores[i]= i/dig;[m
+[31m-	int x=0,n=N-1;[m
+[31m-	cout<<n<<"\n";[m
+[31m-	while(n--){[m
+[31m-	   int tam = planetas[x+1]-planetas[x];[m
+[31m-	   float res,r=dig,resultado,aux;[m
+[31m-	   for(float i=0;i<tam;i++){[m
+[31m-	       res= binary(planetas[x]+i);[m
+[31m-	       aux= ecuacion(res);[m
+[31m-	       if(aux < 0) aux = aux*-1;[m
+[31m-	       if(aux < r){ r=aux; resultado = res;}[m
+[31m-	   } x++;[m
+[31m-	 cout.precision(3);[m
+[31m-	 cout<<fixed<<resultado<<"\n";[m
+[31m-	}[m
+[31m-[m
+[31m-}        [m
+[1mdiff --git a/BusquedaBinaria/Planetas/sol.exe b/BusquedaBinaria/Planetas/sol.exe[m
+[1mdeleted file mode 100644[m
+[1mindex d247597..0000000[m
+Binary files a/BusquedaBinaria/Planetas/sol.exe and /dev/null differ
+[1mdiff --git a/BusquedaBinaria/WhereIsTheMarble/in.txt b/BusquedaBinaria/WhereIsTheMarble/in.txt[m
+[1mdeleted file mode 100644[m
+[1mindex b4cc123..0000000[m
+[1m--- a/BusquedaBinaria/WhereIsTheMarble/in.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,46 +0,0 @@[m
+[31m-11 5 [m
+[31m-[m
+[31m-130[m
+[31m-1 [m
+[31m-1 [m
+[31m-3 [m
+[31m-5 [m
+[31m-7 [m
+[31m-1 [m
+[31m-3 [m
+[31m-9 [m
+[31m-120 [m
+[31m-1 [m
+[31m-[m
+[31m-1 [m
+[31m-3 [m
+[31m-120 [m
+[31m-7 [m
+[31m-1234 [m
+[31m-[m
+[31m-10 12 [m
+[31m-[m
+[31m-1111 [m
+[31m-1111 [m
+[31m-1111 [m
+[31m-5 [m
+[31m-5 [m
+[31m-5 [m
+[31m-10 [m
+[31m-11 [m
+[31m-12 [m
+[31m-10 [m
+[31m-[m
+[31m-1111 [m
+[31m-5 [m
+[31m-10 [m
+[31m-11 [m
+[31m-12 [m
+[31m-1111 [m
+[31m-134 [m
+[31m-567 [m
+[31m-246 [m
+[31m-24 [m
+[31m-12 [m
+[31m-435 [m
+[31m-0 0[m
+\ No newline at end of file[m
+[1mdiff --git a/BusquedaBinaria/WhereIsTheMarble/sol.cpp b/BusquedaBinaria/WhereIsTheMarble/sol.cpp[m
+[1mdeleted file mode 100644[m
+[1mindex b872026..0000000[m
+[1m--- a/BusquedaBinaria/WhereIsTheMarble/sol.cpp[m
+[1m+++ /dev/null[m
+[36m@@ -1,48 +0,0 @@[m
+[31m-#include <bits/stdc++.h>[m
+[31m-using namespace std;[m
+[31m-vector <int> marbles;[m
+[31m-int binary(int x){[m
+[31m- 	int ini=0,fin=marbles.size()-1,res=-1,mit;[m
+[31m-	while(ini <= fin){[m
+[31m-	   mit= 0.5*(ini+fin);[m
+[31m-	   if(marbles[mit] == x){[m
+[31m-	   	res=mit;[m
+[31m-		fin=mit-1;[m
+[31m-	   }[m
+[31m-	   if(marbles[mit]>x) fin=mit-1;[m
+[31m-	   if(marbles[mit]<x) ini=mit+1;[m
+[31m-	}[m
+[31m-	return res;[m
+[31m-}[m
+[31m-int main(){[m
+[31m-	int N,Q;[m
+[31m-	int numCase=1;[m
+[31m-	while(cin>>N>>Q){[m
+[31m-	if(!N && !Q) break;[m
+[31m-        int num;[m
+[31m-	marbles = vector<int> (N);[m
+[31m-		for(int i=0;i<N;i++){[m
+[31m-		   cin>>num;[m
+[31m-		   marbles[i]=num;	[m
+[31m-		}[m
+[31m-	/*	cout<<"Marbles: \n";[m
+[31m-		for(int i=0;i<N;i++){  [m
+[31m-		   cout<<marbles[i]<<",";	[m
+[31m-		}cout<<"\n";  */[m
+[31m-		sort(marbles.begin(),marbles.end());[m
+[31m-		[m
+[31m-	/*	cout<<"Marbles Ordenadas: \n";[m
+[31m-		for(int i=0;i<N;i++){   [m
+[31m-		   cout<<marbles[i]<<",";	[m
+[31m-		}cout<<"\n";    */[m
+[31m-		cout<<"CASE# "<<numCase<<":\n";numCase++;[m
+[31m-		int querie;[m
+[31m-		for(int j=0; j < Q; j++){[m
+[31m-		   cin>>querie;[m
+[31m-			int res = binary(querie);[m
+[31m-			if(res == -1) cout<<querie<<" not found\n";[m
+[31m-			else cout<<querie<<" found at "<<res+1<<"\n";		[m
+[31m-		}[m
+[31m-	}[m
+[31m- return 0;[m
+[31m-}[m
+[1mdiff --git a/BusquedaBinaria/WhereIsTheMarble/sol.exe b/BusquedaBinaria/WhereIsTheMarble/sol.exe[m
+[1mdeleted file mode 100644[m
+[1mindex 7c008f2..0000000[m
+Binary files a/BusquedaBinaria/WhereIsTheMarble/sol.exe and /dev/null differ
+[1mdiff --git a/BusquedaBinaria/Worms/in.txt b/BusquedaBinaria/Worms/in.txt[m
+[1mdeleted file mode 100644[m
+[1mindex 344e37d..0000000[m
+[1m--- a/BusquedaBinaria/Worms/in.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,4 +0,0 @@[m
+[31m-5[m
+[31m-2 7 3 4 9[m
+[31m-3 [m
+[31m-1 25 11[m
+\ No newline at end of file[m
+[1mdiff --git a/BusquedaBinaria/Worms/sol.cpp b/BusquedaBinaria/Worms/sol.cpp[m
+[1mdeleted file mode 100644[m
+[1mindex 24f0cce..0000000[m
+[1m--- a/BusquedaBinaria/Worms/sol.cpp[m
+[1m+++ /dev/null[m
+[36m@@ -1,32 +0,0 @@[m
+[31m-#include <bits/stdc++.h>[m
+[31m-using namespace std;[m
+[31m-[m
+[31m-vector <int> pilas;[m
+[31m-int binaria(int x){[m
+[31m- int res=0,mid,ini=0,fin=pilas.size()-1;[m
+[31m-	while(ini<=fin){[m
+[31m-	 mid= 0.5*(ini+fin);[m
+[31m-	 if(pilas[mid] == x){ res=mid; fin=mid-1;}[m
+[31m-	 if(pilas[mid] < x) ini=mid+1;[m
+[31m-	 if(pilas[mid] > x){ res=mid; fin=mid-1;}[m
+[31m-	}[m
+[31m-	return res;[m
+[31m-}[m
+[31m-int main(){[m
+[31m-   int N;cin>>N;[m
+[31m-    pilas= vector<int> (N+1);[m
+[31m-	int num,sum=0;[m
+[31m-	for(int i=0;i<N;i++){[m
+[31m-	   cin>>num; sum+=num;[m
+[31m-	   pilas[i]=sum;}[m
+[31m-	//for(int i=0;i<N;i++){[m
+[31m-	 // cout<<i<<" "<<pilas[i];} cout<<"\n";[m
+[31m-     int Q; cin>>Q;[m
+[31m-	for(int j=0;j<Q;j++){[m
+[31m-	 int querie; cin>>querie;[m
+[31m-	 int res= binaria(querie);[m
+[31m-	 cout<<res+1<<"\n";[m
+[31m-	}	[m
+[31m-	[m
+[31m- return 0;[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/BusquedaBinaria/Worms/sol.exe b/BusquedaBinaria/Worms/sol.exe[m
+[1mdeleted file mode 100644[m
+[1mindex 4c38fbf..0000000[m
+Binary files a/BusquedaBinaria/Worms/sol.exe and /dev/null differ
+[1mdiff --git a/TeoriaDeNumeros/Neighbour/Neighbour.cpp b/TeoriaDeNumeros/Neighbour/Neighbour.cpp[m
+[1mdeleted file mode 100644[m
+[1mindex d24fa1e..0000000[m
+[1m--- a/TeoriaDeNumeros/Neighbour/Neighbour.cpp[m
+[1m+++ /dev/null[m
+[36m@@ -1,19 +0,0 @@[m
+[31m-#include <bits/stdc++.h>[m
+[31m-using namespace std;[m
+[31m-	[m
+[31m-string numero;[m
+[31m-string n="1000000";[m
+[31m-[m
+[31m-int main()[m
+[31m-{[m
+[31m-	cin>>numero;[m
+[31m-	if (next_permutation(numero.begin(),numero.end()))[m
+[31m-	{[m
+[31m-		cout<<numero<<"\n";[m
+[31m-	}[m
+[31m-	else{[m
+[31m-		cout<<"0\n";[m
+[31m-	}[m
+[31m-	return 0;[m
+[31m-}[m
+[31m-[m
+[1mdiff --git a/TeoriaDeNumeros/NumeroLibres/in.txt b/TeoriaDeNumeros/NumeroLibres/in.txt[m
+[1mdeleted file mode 100644[m
+[1mindex f5f0355..0000000[m
+[1m--- a/TeoriaDeNumeros/NumeroLibres/in.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,5 +0,0 @@[m
+[31m-4[m
+[31m-1 1[m
+[31m-13 6[m
+[31m-6 3[m
+[31m-10 2[m
+\ No newline at end of file[m
+[1mdiff --git a/TeoriaDeNumeros/NumeroLibres/sol.cpp b/TeoriaDeNumeros/NumeroLibres/sol.cpp[m
+[1mdeleted file mode 100644[m
+[1mindex 23a317a..0000000[m
+[1m--- a/TeoriaDeNumeros/NumeroLibres/sol.cpp[m
+[1m+++ /dev/null[m
+[36m@@ -1,16 +0,0 @@[m
+[31m-#include <bits/stdc++.h>[m
+[31m-[m
+[31m-using namespace std;[m
+[31m-typedef long long i64;[m
+[31m-[m
+[31m-int main(){[m
+[31m-int N;cin>>N;[m
+[31m-[m
+[31m-while(N--){[m
+[31m- i64 a,b;cin>>a>>b;[m
+[31m-    if(__gcd(a,b) == 1)[m
+[31m-	cout<<"SI\n";[m
+[31m-    else cout<<"NO\n";[m
+[31m-}[m
+[31m- return 0;[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/TeoriaDeNumeros/NumeroLibres/sol.exe b/TeoriaDeNumeros/NumeroLibres/sol.exe[m
+[1mdeleted file mode 100644[m
+[1mindex dc716e9..0000000[m
+Binary files a/TeoriaDeNumeros/NumeroLibres/sol.exe and /dev/null differ
+[1mdiff --git a/TeoriaDeNumeros/weakenedcommondivisor/in.txt b/TeoriaDeNumeros/weakenedcommondivisor/in.txt[m
+[1mdeleted file mode 100644[m
+[1mindex 7f76ae2..0000000[m
+[1m--- a/TeoriaDeNumeros/weakenedcommondivisor/in.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,4 +0,0 @@[m
+[31m-3[m
+[31m-17 18[m
+[31m-15 24[m
+[31m-12 15[m
+\ No newline at end of file[m
+[1mdiff --git a/TeoriaDeNumeros/weakenedcommondivisor/sol.cpp b/TeoriaDeNumeros/weakenedcommondivisor/sol.cpp[m
+[1mdeleted file mode 100644[m
+[1mindex a7dc5bb..0000000[m
+[1m--- a/TeoriaDeNumeros/weakenedcommondivisor/sol.cpp[m
+[1m+++ /dev/null[m
+[36m@@ -1,61 +0,0 @@[m
+[31m-//Weakended Common Divisor. Rodriguez Flores Victor Hugo[m
+[31m-#include <bits/stdc++.h>[m
+[31m-using namespace std;[m
+[31m-typedef long long i64;[m
+[31m-vector<int> criba;[m
+[31m-vector<int> factores;[m
+[31m-[m
+[31m-i64 factprimo(i64 n){[m
+[31m-	i64 i=n;[m
+[31m-[m
+[31m-	while(1){[m
+[31m-		if(criba[i] == i ){factores.push_back(i);break;}[m
+[31m-		factores.push_back(criba[i]);[m
+[31m-		i = (i)/(criba[i]);[m
+[31m-		//cout<<"i:"<<i<<"\n";[m
+[31m-	}[m
+[31m-	return factores[0];[m
+[31m-}[m
+[31m-[m
+[31m-vector<int> Criba(i64 n){[m
+[31m- 	i64 raiz = sqrt(n);[m
+[31m-	vector<int> crib(n + 1);[m
+[31m-	for (i64 i = 4; i <= n; i += 2)[m
+[31m-		crib[i] = 2;[m
+[31m-	for (i64 i = 3; i <= raiz; i += 2)[m
+[31m-	 	if (!crib[i])[m
+[31m-		for (i64 j = i * i; j <= n; 
