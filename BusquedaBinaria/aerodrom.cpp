@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long i64;
 
-vector<i64> tiempos(300005);
+vector<i64> tiempos(300006);
 
 i64 operacion(i64 n,i64 desk){
  i64 res=0;
@@ -13,17 +13,17 @@ i64 operacion(i64 n,i64 desk){
 }
 
 int main(){
- 
+
   i64 desk,people;
   cin>>desk>>people;
-  i64 max=0;	
+  i64 max=0;
   for(int i=0;i<desk;i++){
     int tiempo;cin>>tiempo;
     tiempos[i]=tiempo;
     if(tiempo>max) max= tiempo;
   }
 
-  i64 ini=0,fin=max*people,mid; 	
+  i64 ini=0,fin=max*people,mid;
   while(ini < fin){
      mid= 0.5*(ini+fin);
      if(operacion(mid,desk) < people)

@@ -44,7 +44,7 @@ void update(int nodo,int ini,int fin,int x,int val){
 }
 
 int query(int nodo,int ini,int fin,int l,int r){
-	
+
 	if(fin < l || r < ini){
 		return 1;
 	}else if(l <= ini && fin <= r){
@@ -60,24 +60,24 @@ int query(int nodo,int ini,int fin,int l,int r){
 int main(){
 
 	while(cin>>n>>k){//scanf("%d %d", &n, &k) != EOF
-		
+
 		for (int i = 1; i <= n; i++)
 			cin>>arr[i];
 			//scanf("%d", &arr[i]);
-			
-			
+
+
 		inicializarST(1,1,n);
-		
+
 		printf("St inicial: ");
 		imprimirST();printf("\n");
-		
-		
+
+
 		for(int i=0; i<=k; i++){
-			
-			char opcion;		
+
+			char opcion;
 			//scanf("%c", &opcion);
 			cin>>opcion;
-			
+
 			if(opcion == 'C'){
 				printf("%c - (%d)\n",opcion,i);
 				int x,val;
@@ -85,15 +85,14 @@ int main(){
 				update(1,1,n,x,helper(val));
 				printf(" * %d - %d \n",x,val);
 				imprimirST();
-				
+
 			}else{
 				printf("%c - (%d)\n",opcion,i);
 				int l,r;
-				//scanf("%d %d",&l,&r);
 				cin>>l>>r;
-				
+
 				int res = query(1,1,n,l,r);
-				
+
 				if(res == 0){
 					printf("0");
 				}else if(res <0){
@@ -103,9 +102,9 @@ int main(){
 				}
 			}
 		}
-		
-		printf("\n");	
-	}	
+
+		printf("\n");
+	}
 
 	return 0;
 }
